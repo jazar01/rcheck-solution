@@ -52,13 +52,20 @@ namespace rcheckd
             }
             catch (Exception)
             {
-                return 0;
+                throw new AccessViolationException("File does not exist or is inaccessible: " + filename);            
             }
 
-           
-
             Byte[] fBuffer = new Byte[bufferLength];
-            int count = fs.Read(fBuffer, 0, bufferLength);
+            int count;
+            try
+            {
+                count = fs.Read(fBuffer, 0, bufferLength);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Unable to read file: " + filename + " (Check permissions)");
+            }
+
             if (count < MINBUFFER)
                 throw new ArgumentException("Buffersize for ChiSquare must be at least " + MINBUFFER + 
                     " only " + count + " bytes were read from the specified offset, possibly end of file.");

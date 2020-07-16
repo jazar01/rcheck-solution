@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.CodeDom;
-using rcheckd;
+using System.Security.Cryptography;
 
 namespace rcheckd
 {
@@ -228,7 +223,15 @@ namespace rcheckd
         {
             get
             {
-                return  Math.Abs(256 - (int) ChiSquare.ComputeChiSquare(Path, 0, 32768));
+                try
+                {
+                    return Math.Abs(256 - (int)ChiSquare.ComputeChiSquare(Path, 0, 32768));
+                }
+                catch (Exception e)
+                {
+                    throw new ApplicationException("Unable to compute ChiSquare distribtuion for file: " + Path +
+                        " - file may not exists or a permissions problem. - " + e.Message);
+                }
             }
         }
 

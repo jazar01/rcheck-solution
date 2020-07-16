@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rcheckd", "rcheckd\rcheckd.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RCheck_Setup", "rcheck-setup\rcheck-setup.vdproj", "{3E6567C0-7AFF-4C57-8B9C-796162544CDA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EFE2F920-EBD0-4687-A889-0A5AB5F0BD62}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

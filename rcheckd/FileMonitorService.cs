@@ -159,9 +159,19 @@ namespace rcheckd
                 else
                 {
                     log.Write("Sentinal file: " + filepath + " Contents changed", 2407, System.Diagnostics.EventLogEntryType.Warning);
-                    if (sentinal.Randomness < 400)
-                        log.Write("              " + filepath + " POSSIBLY ENCRYPTED", 2491, System.Diagnostics.EventLogEntryType.Warning);
+                    try
+                    {
+                        if (sentinal.Randomness < 400)
+                            log.Write("              " + filepath + " POSSIBLY ENCRYPTED", 2491, System.Diagnostics.EventLogEntryType.Warning);
+                    }     
+                    catch (Exception e)
+                    {
+                        // probably a permission issue, more details will be in the exception message
+                        log.Write("           " + filepath + "  Unknown status - " + e.Message,
+                             4918, System.Diagnostics.EventLogEntryType.Warning);
+                    }
                 }
+
             }
             else
             {
@@ -260,22 +270,21 @@ namespace rcheckd
                     else
                     {
                         log.Write("   Failed: " + File.Path + "  " + sentinal.Error, 2404, System.Diagnostics.EventLogEntryType.Warning);
-                        if (sentinal.Randomness < 400)
-                            log.Write("           " + File.Path + "  POSSIBLY ENCRYPTED", 2492, System.Diagnostics.EventLogEntryType.Warning);
+                        try
+                        {
+                            if (sentinal.Randomness < 400)
+                                log.Write("           " + File.Path + "  POSSIBLY ENCRYPTED", 2492, System.Diagnostics.EventLogEntryType.Warning);
+                        }
+                        catch (Exception e)
+                        {
+                            // probably a permission issue, more details will be in the exception message
+                                log.Write("           " + File.Path + "  Unknown status - " + e.Message,
+                                     4916, System.Diagnostics.EventLogEntryType.Warning);
+                        }
+                      
                     }
                 }
             }
         }
-
-        /*
-        private void InitializeComponent()
-        {
-            // 
-            // FileMonitorService
-            // 
-            this.ServiceName = SERVICENAME;
-
-        }
-        */
     }
 }
