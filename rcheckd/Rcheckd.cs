@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 
 
 namespace rcheckd
@@ -25,8 +23,6 @@ namespace rcheckd
             };
             ServiceBase.Run(ServicesToRun);
 
-            // ServicesToRun[0].ServiceName = "rcheckd"; // test without this or the line in filemonitorservice.cs
-                                                      //  not sure why both are used
         }
 
 
