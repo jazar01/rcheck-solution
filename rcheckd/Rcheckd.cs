@@ -24,6 +24,9 @@ namespace rcheckd
                 
             };
             ServiceBase.Run(ServicesToRun);
+
+            // ServicesToRun[0].ServiceName = "rcheckd"; // test without this or the line in filemonitorservice.cs
+                                                      //  not sure why both are used
         }
 
 
