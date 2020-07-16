@@ -1,0 +1,80 @@
+# rcheck config file
+# This configuration file is used by the commandline utility rcheck
+#   to determine the paths and sizes of Sentinal files.  An file that
+#   does not have Sentinal: True, will be ignored by the rcheck command.
+# This configuration file is also used by the rcheckd service to
+#   determine which files to monitor and what actions, if any, to take.
+
+# Logfile can be set to a file path or "EventLog" 
+
+#Logfile: c:\temp\rcheckdtest.log
+Logfile: EventLog
+
+Debug: true
+
+Files:
+  - Path: c:\temp\rtest\rcheck_file1.docx
+    Sentinal: true
+    Length: 20MB
+
+  - Path: c:\temp\rtest\rcheck_file2.bin
+    Sentinal: true
+    Length: 25KB
+
+  - Path: c:\temp\rtest\rcheck_file3.bin
+    Sentinal: true
+    Length: 100MB
+
+  - Path: c:\temp\rtest\rcheck_file4.bin
+    Sentinal: true
+
+  - Path: c:\temp\rtest\rcheck_file5.bin
+    Sentinal: true
+
+  - Path: c:\temp\rtest\rcheck_file6.bin
+    Sentinal: true
+
+  - Path: c:\temp\rtest\rcheck_file7.bin
+    Sentinal: true
+
+
+#  This file will be monitored.  It is not a Sentinal file, so it can easily be edited with notepad
+#     You will need to create this file manually.  When Sentinal is not specified rcheck does not generate it.
+#     This file also as an action that will be executed upon any change.  Always use /C in the parameters
+#     when Action_Command is set to "cmd". 
+  - Path: c:\temp\rchecktest.txt
+    Action_Command: cmd
+    Action_Parameters: "/C echo File Event - {File} {ChangeType} on {Date} at {Time} on computer: {ComputerName} >>rcheckd2.log"
+    Action_Directory: c:\temp
+
+#   sample actions
+#   shutdown and restart the system (you should probably shutdown -s -t 0)
+#   Action_Command: Shutdown
+#   Action_Parameters: "-r -t 20"
+
+#   Running a command file with a default directory
+#   Action_Command: "testBatchFile.cmd"
+#   Action_Directory: c:\temp
+#   Action_MaxWaitTime: 25000
+
+#    Using the windows command processor to execute a built in command 
+#    Action_Command: cmd
+#    Action_Parameters: "/C echo File Event - {File} {ChangeType} on {Date} at {Time} on computer: {ComputerName} >>rcheckd2.log"
+#    Action_Directory: c:\temp
+
+#    Using the windows command processor to execute an exe file and redirect output
+#    Action_Command: cmd
+#    Action_Parameters: "/C c:\\util\\gobble >> c:\\temp\\gobble.log"  
+#    Action_MaxWaitTime: 25000
+
+#    Passing parameters to a command file
+#    Action_Command: c:\temp\rcheckdtest.cmd
+#    Action_Parameters: "{File} {ChangeType} {Date} {Time}"
+
+#   Executing a exe directly but no way to redirect standard output
+#   Action_Command: c:\util\gobble.exe
+#   Action_Parameters: -f
+#   Action_MaxWaitTime: 25000
+
+
+
