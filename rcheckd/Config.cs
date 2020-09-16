@@ -13,6 +13,8 @@ namespace rcheckd
         public bool Debug { get; set; }
         public List<FileRecord> Files { get; set; }
 
+        public MailConfig MailSettings { get; set; }
+
         // public Config() { }   /* YamlDotNet requires a constructor with no parameters */
 
         /// <summary>
@@ -39,6 +41,13 @@ namespace rcheckd
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Rcheckd configuration: Logfile: " + Logfile + " Debug: " + Debug + "\nFiles:\n");
+            sb.Append("\n MailSettings: ");
+            sb.Append("\n   MailServer: " + MailSettings.MailServer);
+            sb.Append("\n   MailServerPort: " + MailSettings.MailServerPort);
+            sb.Append("\n   MailAccount: " + MailSettings.MailAuthAccount);
+            sb.Append("\n   MailTo: " + MailSettings.MailTo);
+            sb.Append("\n   MailFrom: " + MailSettings.MailFrom + "\n");
+
             foreach (FileRecord fr in Files)
             {
                 sb.Append("Path=" + fr.Path);
@@ -124,5 +133,17 @@ namespace rcheckd
         }
 
     }
+
+    public class MailConfig
+    {
+        public bool SendMail { get; set; }
+        public string MailServer { get; set; }
+        public int MailServerPort { get; set; }
+        public string MailAuthAccount { get; set; }
+        public string MailAuthPassword { get; set; }
+        public string MailFrom { get; set; }
+        public string MailTo { get; set; }
+    }
+        
 
 }

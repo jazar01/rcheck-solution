@@ -268,6 +268,10 @@ other parameters for each file are optional.
         4918 WARN  An error occured while attempting to test a Sentinal file for randomness
                    after a change was detected by the rcheckd service. This could be a permissions problem.
 
+        5001 ERROR An attempt to send an email message failed.
+
+        5002 ERROR An attempt to send an email message failed.
+
         9001 INFO  Verbose information displayed when Debug: True.  Displays the configuration
                    data obtained from rcheckconfig.yml
 

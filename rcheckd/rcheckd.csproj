@@ -91,6 +91,7 @@
     <Compile Include="BytesConvert.cs" />
     <Compile Include="ChiSquare.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="FileMonitorService.cs">
       <SubType>Component</SubType>
     </Compile>

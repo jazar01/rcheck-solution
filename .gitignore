@@ -6,6 +6,9 @@
 # ignore the pre and post build signing files
 rcheck-signing/
 
+# ignore the testing project
+RCTest/
+
 # User-specific files
 *.rsuser
 *.suo

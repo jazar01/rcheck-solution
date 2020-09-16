@@ -10,6 +10,13 @@
 #Logfile: c:\temp\rcheckdtest.log
 Logfile: EventLog
 
+MailSettings:
+    SendMail: true
+    MailServer: mail.rhinoback.com
+    MailServerPort: 22025
+    MailFrom: jim@orasi.com
+    MailTo: jazar01@orasi.com
+
 Debug: true
 
 Files:

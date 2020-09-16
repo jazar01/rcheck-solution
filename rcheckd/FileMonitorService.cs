@@ -22,6 +22,8 @@ namespace rcheckd
 
 
         Logger log;
+        Email mailer;
+    
 
         /// <summary>
         /// This method runs when the service is started
@@ -48,6 +50,13 @@ namespace rcheckd
             log = new Logger(config.Logfile, config.Debug);
             log.Write("rcheckd starting",1001);
             log.Write(config.ToString(), 9001); // only written if debug is true
+            mailer = new Email(log,
+                   config.MailSettings.MailServer,
+                   config.MailSettings.MailServerPort,
+                   config.MailSettings.MailAuthAccount,
+                   config.MailSettings.MailAuthPassword);
+
+            mailer.SendMail(config.MailSettings.MailFrom, config.MailSettings.MailTo, "Test message from RCheckd", "This is a test message from RCheckd");
 
             // Test all sentinal files on startup
             //   in case something happened while this service was down

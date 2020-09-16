@@ -38,7 +38,7 @@ namespace rcheckd
 
             if (Logfile.ToLower() == "eventlog")
             {
-                
+
                 WriteEventLog(EventSource, message, type, eventID);
             }
             else
@@ -50,12 +50,19 @@ namespace rcheckd
                                                 EventTypeString(type),
                                                 message);
 
+                if (Logfile.ToLower() == "console")
+                {
+                    Console.Write(entry);
+                }
+                else 
+                { 
                 //  TODO - check to see if directory needs to be created
                 FileInfo fi = new FileInfo(Logfile);
                 if (!fi.Exists) // new log file, write a header
-                    File.WriteAllText(Logfile,string.Format("{0} {1}\t{2} {3} {4}\n", "Date     ", "Time   ", "Event", "Type", "Message"));
+                    File.WriteAllText(Logfile, string.Format("{0} {1}\t{2} {3} {4}\n", "Date     ", "Time   ", "Event", "Type", "Message"));
 
                 System.IO.File.AppendAllText(Logfile, entry);
+                }
             }
 
 
