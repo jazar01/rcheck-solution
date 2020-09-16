@@ -233,9 +233,9 @@ other parameters for each file are optional.
 
         2491 WARN  A Sentinal file has changed and is likely encrypted
 
-        2492 WARN  A Sentinal file change was detected on service startup and file is like encrypted.
+        2492 WARN  A Sentinal file change was detected on service startup and file is likey encrypted.
 
-        2508 INFO  An Action_Command is attempting to execute after a change was deteted
+        2508 INFO  An Action_Command is attempting to execute after a change was detected
 
         2509 INFO  An Action_Command executed and completed
 
@@ -271,6 +271,9 @@ other parameters for each file are optional.
         5001 ERROR An attempt to send an email message failed.
 
         5002 ERROR An attempt to send an email message failed.
+
+        5901 ERROR An attempt was made to send an email notification, but there is not a valid mailserver
+                   configuration in rcheckconfig.yml
 
         9001 INFO  Verbose information displayed when Debug: True.  Displays the configuration
                    data obtained from rcheckconfig.yml

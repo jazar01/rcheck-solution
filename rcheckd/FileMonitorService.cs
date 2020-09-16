@@ -48,15 +48,35 @@ namespace rcheckd
             }
 
             log = new Logger(config.Logfile, config.Debug);
+            log.NotifyOnMessages = config.NotifyOnMessages;
             log.Write("rcheckd starting",1001);
             log.Write(config.ToString(), 9001); // only written if debug is true
-            mailer = new Email(log,
-                   config.MailSettings.MailServer,
-                   config.MailSettings.MailServerPort,
-                   config.MailSettings.MailAuthAccount,
-                   config.MailSettings.MailAuthPassword);
 
-            mailer.SendMail(config.MailSettings.MailFrom, config.MailSettings.MailTo, "Test message from RCheckd", "This is a test message from RCheckd");
+            // see if we have a usable email configuration for notifications.
+            if (string.IsNullOrEmpty(config.MailSettings.MailServer))
+                mailer = null; // we don't have at least minimal Mailserver config, so don't attempt to send emails.
+            else if (string.IsNullOrEmpty(config.MailSettings.MailTo))
+            {
+                log.Write("Configurtion Error - MailServer was specified, but no MailTo address was specfied.  Email notifications are disabled.",
+                    5902, System.Diagnostics.EventLogEntryType.Warning);
+                mailer = null; // disable email notifications.  we don't know who to send them to
+            }
+            else
+            {
+                mailer = new Email(log,
+                       config.MailSettings.MailServer,
+                       config.MailSettings.MailServerPort,
+                       config.MailSettings.MailAuthAccount,
+                       config.MailSettings.MailAuthPassword);
+     
+                mailer.To = config.MailSettings.MailTo;
+                mailer.From = config.MailSettings.MailFrom;
+
+                if (config.Debug)
+                    mailer.notify("RCheckd Started");
+
+                log.mailer = mailer; // set the log mailer so it can send mail
+            }
 
             // Test all sentinal files on startup
             //   in case something happened while this service was down

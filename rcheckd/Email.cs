@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Net.Mail;
 using System.Dynamic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace rcheckd
 {
@@ -11,13 +12,13 @@ namespace rcheckd
     /// </summary>
     public class Email
     {
-        Logger Log { get; set; }
-        string Server { get; set; }
-        int Port { get; set; }
-        string Account { get; set; }
-        string Password { get; set; }
-        string From { get; set; }
-        string To { get; set; }
+        public Logger Log { get; set; }
+        public string Server { get; set; }
+        public int Port { get; set; }
+        public string Account { get; set; }
+        public string Password { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
 
         public Email(Logger log,
                      string mailServer, 
@@ -31,6 +32,19 @@ namespace rcheckd
             Account = mailAuthAccount;
             Password = mailAuthPassword;
         }
+        /// <summary>
+        /// Send a notification for RCheckd with all the defaults.
+        /// </summary>
+        /// <param name="entry"></param>
+        public void notify(string entry)
+        {
+            // string DNSName = System.Net.Dns.GetHostName();
+            string MachineName = System.Environment.MachineName;
+            string message = "Notification from machine: " + MachineName + "\n\n" + entry;
+
+            SendMail(From, To, "RCheckd notification from " + MachineName, message, MailPriority.High);
+        }
+
         /// <summary>
         /// Send an email message with specified priority
         /// </summary>
@@ -107,14 +121,18 @@ namespace rcheckd
         {
             try
             {
-                MailMessage Message = (MailMessage)mmessage;
-                SmtpClient Mailer = new SmtpClient(Server, Port);
+                using (SmtpClient Mailer = new SmtpClient(Server, Port))
+                {
+                    MailMessage Message = (MailMessage)mmessage;
 
-                if (!string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(Password))
-                    Mailer.Credentials = new System.Net.NetworkCredential(Account, Password);
+                    Mailer.EnableSsl = true;
 
-                Mailer.Send(Message);
-                Thread.Sleep(500);
+                    if (!string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(Password))
+                        Mailer.Credentials = new System.Net.NetworkCredential(Account, Password);
+
+                    Mailer.Send(Message);
+                    Thread.Sleep(500);
+                }
             }
             catch (Exception e)
             {

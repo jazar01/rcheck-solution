@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
@@ -9,6 +10,10 @@ namespace rcheckd
     { 
         public string Logfile { get; set; }
         public bool Debug { get; set; }
+        public List<int> NotifyOnMessages { set; get; }
+
+        public Email mailer { set; get; }
+
         public static string EventSource = "RCheckd";
 
         public Logger(string filepath, bool debug)
@@ -36,6 +41,23 @@ namespace rcheckd
             if (eventID >= 9000 && !Debug)  /* only log debugging messages if Debug is true */
                 return;
 
+            string entry = string.Format("{0} {1}\t{2} {3} {4}\n",
+                                DateTime.Now.ToShortDateString(),
+                                DateTime.Now.ToLongTimeString(),
+                                eventID,
+                                EventTypeString(type),
+                                message);
+
+
+            if (NotifyOnMessages.Contains(eventID))
+            {
+                if (mailer != null)
+                    mailer.notify(entry);
+                else
+                    WriteEventLog(EventSource, "RCheckd attempted to send an email but does not have a proper mail configuration", EventLogEntryType.Error, 5901); 
+            }
+            
+
             if (Logfile.ToLower() == "eventlog")
             {
 
@@ -43,13 +65,6 @@ namespace rcheckd
             }
             else
             {
-                string entry = string.Format("{0} {1}\t{2} {3} {4}\n",
-                                                DateTime.Now.ToShortDateString(),
-                                                DateTime.Now.ToLongTimeString(),
-                                                eventID,
-                                                EventTypeString(type),
-                                                message);
-
                 if (Logfile.ToLower() == "console")
                 {
                     Console.Write(entry);
@@ -116,6 +131,7 @@ namespace rcheckd
             CreateEventSource();
             EventLog.WriteEntry(EventSource, message, type, eventID);
         }
+
 
     }
 }

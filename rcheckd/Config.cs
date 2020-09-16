@@ -15,6 +15,8 @@ namespace rcheckd
 
         public MailConfig MailSettings { get; set; }
 
+        public List<int> NotifyOnMessages { get; set; }
+
         // public Config() { }   /* YamlDotNet requires a constructor with no parameters */
 
         /// <summary>
@@ -47,6 +49,10 @@ namespace rcheckd
             sb.Append("\n   MailAccount: " + MailSettings.MailAuthAccount);
             sb.Append("\n   MailTo: " + MailSettings.MailTo);
             sb.Append("\n   MailFrom: " + MailSettings.MailFrom + "\n");
+
+            sb.Append("\nNotify on Messages:\n");
+            foreach (int code in NotifyOnMessages)
+                sb.Append(code + "\n");
 
             foreach (FileRecord fr in Files)
             {
@@ -144,6 +150,4 @@ namespace rcheckd
         public string MailFrom { get; set; }
         public string MailTo { get; set; }
     }
-        
-
 }

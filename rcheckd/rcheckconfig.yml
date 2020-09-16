@@ -17,6 +17,10 @@ MailSettings:
     MailFrom: jim@orasi.com
     MailTo: jazar01@orasi.com
 
+    NotifyOnMessages:
+    - Code: 2491
+    - Code: 2492
+
 Debug: true
 
 Files:
