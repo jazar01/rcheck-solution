@@ -28,6 +28,7 @@ namespace rcheckd
          * 2xxx - file events
          * 3xxx - recoverable errors/warnings
          * 4xxx - fatal errors
+         * 5xxx - email notification events
          * 9xxx - debugging messages
          */
         /// <summary>
@@ -48,13 +49,15 @@ namespace rcheckd
                                 EventTypeString(type),
                                 message);
 
-
-            if (NotifyOnMessages.Contains(eventID))
-            {
-                if (mailer != null)
-                    mailer.notify(entry);
-                else
-                    WriteEventLog(EventSource, "RCheckd attempted to send an email but does not have a proper mail configuration", EventLogEntryType.Error, 5901); 
+            if (NotifyOnMessages != null)  // don't attempt check for notificatons if the list has not been built
+            {                              //    this may be the case for early messages on startup
+                if (NotifyOnMessages.Contains(eventID))
+                {
+                    if (mailer != null)
+                        mailer.notify(entry);
+                    else
+                        WriteEventLog(EventSource, "RCheckd attempted to send an email but does not have a proper mail configuration", EventLogEntryType.Error, 5901);
+                }
             }
             
 

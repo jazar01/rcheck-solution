@@ -50,9 +50,12 @@ namespace rcheckd
             sb.Append("\n   MailTo: " + MailSettings.MailTo);
             sb.Append("\n   MailFrom: " + MailSettings.MailFrom + "\n");
 
-            sb.Append("\nNotify on Messages:\n");
-            foreach (int code in NotifyOnMessages)
-                sb.Append(code + "\n");
+            if (NotifyOnMessages != null)
+            {
+                sb.Append("\nNotify on Messages:\n");
+                foreach (int code in NotifyOnMessages)
+                    sb.Append(code + "\n");
+            }
 
             foreach (FileRecord fr in Files)
             {

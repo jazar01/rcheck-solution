@@ -61,6 +61,12 @@ namespace rcheckd
                     5902, System.Diagnostics.EventLogEntryType.Warning);
                 mailer = null; // disable email notifications.  we don't know who to send them to
             }
+            else if (string.IsNullOrEmpty(config.MailSettings.MailTo))
+            {
+                log.Write("Configurtion Error - MailServer was specified, but no MailFrom address was specfied.  Email notifications are disabled.",
+                    5903, System.Diagnostics.EventLogEntryType.Warning);
+                mailer = null; // disable email notifications.  we don't know who to send them to
+            }
             else
             {
                 mailer = new Email(log,

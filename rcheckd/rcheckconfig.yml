@@ -10,16 +10,19 @@
 #Logfile: c:\temp\rcheckdtest.log
 Logfile: EventLog
 
+# Configuration for the mail server to send notification emails
 MailSettings:
-    SendMail: true
-    MailServer: mail.rhinoback.com
-    MailServerPort: 22025
-    MailFrom: jim@orasi.com
-    MailTo: jazar01@orasi.com
-
+    MailServer: smtp.gmail.com
+    MailServerPort: 587
+    MailAuthAccount: rcheck.system@gmail.com
+    MailAuthPassword: 0raC*2020
+    MailFrom: rcheck.system@gmail.com
+    MailTo: admin@orasi.com
+ 
+    # set which EventID's will trigger an email notification
     NotifyOnMessages:
-    - Code: 2491
-    - Code: 2492
+      - 2491  # A sentinal file was likely encrypted (detected real-time)
+      - 2492  # A sentinal file was likely encrypted (detected on startup)
 
 Debug: true
 

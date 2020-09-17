@@ -83,6 +83,31 @@ Note: the rcheck command line util always sends output to stdout (the console)
 You can specify "Debug: True" to cause more verbose logging to occur.  This is
 recommended when experimenting with your rcheckconfig.yml file.
 
+MailSettings - this section specifies the mail server information for Notifications
+    Notifications can be sent via email when event occur.  If MailServer is not 
+    specified, or is invalid, Notifications will be disabled. 
+
+    MailServer:          (required)
+    MailServerPort:      (default = 25)
+    MailAuthAccount:     (optional)
+    MailAutoPassword:    (optional)
+    MailFrom:            (required)
+    MailTo:              (required)
+
+    Tip:  When configuring MailSettings, Set Debug: True.  This will cause a notification
+          to be sent when the RCheckd service is started.  You may need to go through a
+          a few interations of specifiying MailServers and parameters before you are 
+          confident that the settings are working.  Restart the RCheckd service with
+          Debug: true to test your mail server configuration.  Check the eventlog or
+          logfile for errors.
+
+          MailTo can contain multiple email address separated by commas
+
+NotifyOnMessage - specifies the Events that will generate notifications.  See the EVENTS
+    section later in this document for a list of EventID's.
+
+    Notifications are supported for EventID's in the range of 2000-2999. 
+
 rcheckconfig.yml has a Files: section to specify which files should be 
 generated or monitored.
 
@@ -274,6 +299,12 @@ other parameters for each file are optional.
 
         5901 ERROR An attempt was made to send an email notification, but there is not a valid mailserver
                    configuration in rcheckconfig.yml
+
+        5902 WARN  A MailServer was specified, but no MailTo address was specified, email notifications
+                   are disabled.
+
+        5903 WARN  A MailServer was specified, but no MailFrom address was specified, email notifications
+                   are disabled.
 
         9001 INFO  Verbose information displayed when Debug: True.  Displays the configuration
                    data obtained from rcheckconfig.yml

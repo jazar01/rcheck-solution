@@ -28,7 +28,10 @@ namespace rcheckd
         {
             Log = log;
             Server = mailServer;
-            Port = mailServerPort;
+            if (mailServerPort > 0)
+                Port = mailServerPort;
+            else
+                Port = 25;  // default to port 25
             Account = mailAuthAccount;
             Password = mailAuthPassword;
         }
@@ -81,6 +84,8 @@ namespace rcheckd
             catch (Exception e)
             {
                 string message = "Email failed - error: " + e.Message + ": " + e.InnerException.ToString();
+                message += "\nMailFrom: " + Message.From + " MailTo: " + Message.To + "\n";
+                message += "Subject: " + Message.Subject + "\n";
                 Log.Write(message, 5001, System.Diagnostics.EventLogEntryType.Error);
                 
             }
@@ -119,12 +124,12 @@ namespace rcheckd
         /// <param name="mmessage"></param>
         private void MailSender(Object mmessage)
         {
+            MailMessage Message = (MailMessage)mmessage;
+
             try
             {
                 using (SmtpClient Mailer = new SmtpClient(Server, Port))
                 {
-                    MailMessage Message = (MailMessage)mmessage;
-
                     Mailer.EnableSsl = true;
 
                     if (!string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(Password))
@@ -141,6 +146,9 @@ namespace rcheckd
                     message = "Email failed - error: " + e.Message;
                 else
                     message = "Email failed - error: " + e.Message + ": " + e.InnerException.ToString();
+
+                message += "\nMailFrom: " + Message.From + " MailTo: " + Message.To + "\n";
+                message += "Subject: " + Message.Subject + "\n";
 
                 Log.Write(message, 5002, System.Diagnostics.EventLogEntryType.Error);
             }
