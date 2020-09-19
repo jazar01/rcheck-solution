@@ -256,6 +256,14 @@ static int Testfiles()
             {
                 if (File.Sentinal) // only generate for files where Sentinal is true
                 {
+                    if (System.IO.File.Exists(File.Path))
+                    {
+                        Console.WriteLine("Failure: '" + File.Path + "' already exists ");
+                        rc++;
+                        continue;
+                    }
+
+
                     Sentinal s = new Sentinal(File.Path);
                     int length = File.GetLength();
 
