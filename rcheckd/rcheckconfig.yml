@@ -15,40 +15,38 @@ MailSettings:
     MailServer: smtp.gmail.com
     MailServerPort: 587
     MailAuthAccount: rcheck.system@gmail.com
-    MailAuthPassword: 0raC*2020
+    MailAuthPassword: 
     MailFrom: rcheck.system@gmail.com
     MailTo: admin@orasi.com
- 
-    # set which EventID's will trigger an email notification
-    NotifyOnMessages:
-      - 2491  # A sentinal file was likely encrypted (detected real-time)
-      - 2492  # A sentinal file was likely encrypted (detected on startup)
+
+# set which EventID's will trigger an email notification
+NotifyOnMessages:
+  - 2001  # a monitored file was changed (detected real-time)
+  - 2003  # a monitored file was renamed (detected real-time)
+  - 2404  # a monitored sentinal file was changed (detected on startup)
+  - 2406  # a monitored sentinal file was changed (detected real-time)
+  - 2491  # a sentinal file was likely encrypted (detected real-time)
+  - 2492  # a sentinal file was likely encrypted (detected on startup)
 
 Debug: true
 
 Files:
-  - Path: c:\temp\rtest\rcheck_file1.docx
+  - Path: c:\data\rtest\rcheck_file1.docx
     Sentinal: true
     Length: 20MB
 
-  - Path: c:\temp\rtest\rcheck_file2.bin
+  - Path: c:\data\rtest\rcheck_file2.db
     Sentinal: true
     Length: 25KB
 
-  - Path: c:\temp\rtest\rcheck_file3.bin
+  - Path: c:\users\rtest\documents\rcheck_file3.pdf
     Sentinal: true
     Length: 100MB
 
-  - Path: c:\temp\rtest\rcheck_file4.bin
+  - Path: c:\users\rtest\documents\rcheck_file4.jpg
     Sentinal: true
 
-  - Path: c:\temp\rtest\rcheck_file5.bin
-    Sentinal: true
-
-  - Path: c:\temp\rtest\rcheck_file6.bin
-    Sentinal: true
-
-  - Path: c:\temp\rtest\rcheck_file7.bin
+  - Path: c:\users\rtest\data\rcheck_file5.xls
     Sentinal: true
 
 
@@ -61,7 +59,7 @@ Files:
     Action_Parameters: "/C echo File Event - {File} {ChangeType} on {Date} at {Time} on computer: {ComputerName} >>rcheckd2.log"
     Action_Directory: c:\temp
 
-#   sample actions
+#   *****   SAMPLE ACTIONS *****
 #   shutdown and restart the system (you should probably shutdown -s -t 0)
 #   Action_Command: Shutdown
 #   Action_Parameters: "-r -t 20"

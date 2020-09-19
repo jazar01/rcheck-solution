@@ -102,20 +102,10 @@ namespace rcheckd
         {
             foreach (FileRecord fr in config.Files)
             {
-                FileSystemWatcher watcher = new FileSystemWatcher();
-                watcher.BeginInit();  // must be here or the watcher will be completely ignored
-                watcher.EnableRaisingEvents = true;
-                watcher.Changed += new FileSystemEventHandler(File_Changed);
-                watcher.Deleted += new FileSystemEventHandler(File_Changed);
-                watcher.Created += new FileSystemEventHandler(File_Changed);
-                watcher.Renamed += new RenamedEventHandler(File_Renamed);
-                watcher.Error += new ErrorEventHandler(OnError);
-                watcher.InternalBufferSize=4096; // increase if we get any buffer overflows, use multiple of 4K
-
                 FileInfo fi;
                 try
                 {
-                    fi = new FileInfo(fr.Path);  
+                    fi = new FileInfo(fr.Path);
                 }
                 catch (Exception e)
                 {
@@ -124,21 +114,49 @@ namespace rcheckd
                 }
 
                 if (!fi.Exists)
-                    log.Write("   File: " + fr.Path + " : " + 
-                        "Does not exists, adding to the watchlist in case it is created later ",
-                        3002, System.Diagnostics.EventLogEntryType.Warning);
+                {
+                    if (fi.Directory.Exists)
+                    {
+                        log.Write("   File: " + fr.Path + " : " +
+                            "Does not exists, adding to the watchlist in case it is created later ",
+                            3002, System.Diagnostics.EventLogEntryType.Warning);
+                    }
+                    else  // the directory does not exist, don't attempt to add a watcher
+                    {
+                        log.Write("   File: " + fr.Path + " : " +
+                            "Does not exists, this file will not be added to the watchlist because the directory does not exist ",
+                            3003, System.Diagnostics.EventLogEntryType.Warning);
+                        continue;
+                    }
+                }
 
-                watcher.Path = fi.DirectoryName;   
-                watcher.Filter = fi.Name;
+                try
+                {
+                    FileSystemWatcher watcher = new FileSystemWatcher();
+                    watcher.BeginInit();  // must be here or the watcher will be completely ignored
+                    watcher.EnableRaisingEvents = true;
+                    watcher.Changed += new FileSystemEventHandler(File_Changed);
+                    watcher.Deleted += new FileSystemEventHandler(File_Changed);
+                    watcher.Created += new FileSystemEventHandler(File_Changed);
+                    watcher.Renamed += new RenamedEventHandler(File_Renamed);
+                    watcher.Error += new ErrorEventHandler(OnError);
+                    watcher.InternalBufferSize = 4096; // increase if we get any buffer overflows, use multiple of 4K
+                    watcher.Path = fi.DirectoryName;
+                    watcher.Filter = fi.Name;
 
-                watcher.NotifyFilter = NotifyFilters.LastWrite
-                                | NotifyFilters.Size
-                                | NotifyFilters.FileName
-                                | NotifyFilters.DirectoryName;
-               
-                watcherlist.Add(watcher);
-                watcher.EndInit();
-                log.Write("   Added: " + fr.Path, 1008);
+                    watcher.NotifyFilter = NotifyFilters.LastWrite
+                                    | NotifyFilters.Size
+                                    | NotifyFilters.FileName
+                                    | NotifyFilters.DirectoryName;
+
+                    watcherlist.Add(watcher);
+                    watcher.EndInit();
+                    log.Write("   Added: " + fr.Path, 1008);
+                }
+                catch (Exception e)
+                {
+                    log.Write("    File: " + fr.Path + " - Watcher could not be added", 3004, System.Diagnostics.EventLogEntryType.Warning);
+                }
             }
                 
         }
@@ -206,9 +224,8 @@ namespace rcheckd
                              4918, System.Diagnostics.EventLogEntryType.Warning);
                     }
                 }
-
             }
-            else
+            else  // not a sentinal file
             {
                 StringBuilder message = new StringBuilder();
                 message.Append("File: " + filepath + "  " + changetype);

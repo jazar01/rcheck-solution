@@ -80,7 +80,7 @@ namespace rcheckd
             // 
             this.serviceInstaller1.Description = "Monitors files for changes (Orasi)";
             this.serviceInstaller1.DisplayName = "RCheck Monitor Service";
-            this.serviceInstaller1.ServiceName = "rcheckd";
+            this.serviceInstaller1.ServiceName = "RCheckd";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             this.serviceInstaller1.Committed += new System.Configuration.Install.InstallEventHandler(this.OnCommitted);
             // 

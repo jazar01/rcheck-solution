@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1FDAE22ED114147215D5B3C872524CE1"
+        "OwnerKey" = "8:_44BE6FFBE231442BA50DE7A488C165B9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_248668FC172A4630BEBA283A4FF182FC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -45,8 +51,68 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C2B8751335006BFDA6E9CCC1C9B1F5C1"
+        "OwnerKey" = "8:_1FDAE22ED114147215D5B3C872524CE1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C2B8751335006BFDA6E9CCC1C9B1F5C1"
+        "OwnerKey" = "8:_C1FA06D58C674878BD665BC5F578DA3B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C2B8751335006BFDA6E9CCC1C9B1F5C1"
+        "OwnerKey" = "8:_44BE6FFBE231442BA50DE7A488C165B9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F6D7DDFDCEE941299B37ECA824985842"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FD961D6AA960EB39E7CC71CC60E5DCA0"
+        "OwnerKey" = "8:_44BE6FFBE231442BA50DE7A488C165B9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FD961D6AA960EB39E7CC71CC60E5DCA0"
+        "OwnerKey" = "8:_C1FA06D58C674878BD665BC5F578DA3B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_44BE6FFBE231442BA50DE7A488C165B9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C1FA06D58C674878BD665BC5F578DA3B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FD961D6AA960EB39E7CC71CC60E5DCA0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1FDAE22ED114147215D5B3C872524CE1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C2B8751335006BFDA6E9CCC1C9B1F5C1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -234,6 +300,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1FDAE22ED114147215D5B3C872524CE1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:rcheckd, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1FDAE22ED114147215D5B3C872524CE1"
+                    {
+                    "Name" = "8:rcheckd.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:rcheckd.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5DFFC8E3EF524244BA4A6F6A54598C0D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_248668FC172A4630BEBA283A4FF182FC"
             {
             "SourcePath" = "8:..\\rcheckd\\Readme.txt"
@@ -274,6 +371,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C2B8751335006BFDA6E9CCC1C9B1F5C1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:YamlDotNet, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C2B8751335006BFDA6E9CCC1C9B1F5C1"
+                    {
+                    "Name" = "8:YamlDotNet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:YamlDotNet.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5DFFC8E3EF524244BA4A6F6A54598C0D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F6D7DDFDCEE941299B37ECA824985842"
             {
             "SourcePath" = "8:..\\rcheckd\\GenerateSentinals.cmd"
@@ -292,6 +420,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FD961D6AA960EB39E7CC71CC60E5DCA0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_FD961D6AA960EB39E7CC71CC60E5DCA0"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5DFFC8E3EF524244BA4A6F6A54598C0D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -364,9 +523,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:rcheckd"
+        "ProductName" = "8:RCheckd"
         "ProductCode" = "8:{50688FAC-F7D1-4E89-BC06-4819CC1A39A8}"
-        "PackageCode" = "8:{653C3AFD-F87B-490C-B30A-EEFB82E6664B}"
+        "PackageCode" = "8:{3C880498-2464-4E26-BC41-62B2F516F948}"
         "UpgradeCode" = "8:{0991989B-0344-40A9-989E-4B5F69754A53}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -377,7 +536,7 @@
         "Manufacturer" = "8:Orasi Software, Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:rcheckd_Setup"
+        "Title" = "8:RCheckd_Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:J. Azar"
         "Keywords" = "8:"

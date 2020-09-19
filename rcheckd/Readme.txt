@@ -1,4 +1,4 @@
-Rcheck V1
+Rcheck V1.1
 
 This project is intended to be used to detect and alert when a ransomware attack
 is in progress.  It does this by detecting changes in specified files.
@@ -270,6 +270,11 @@ other parameters for each file are optional.
 
         3002 WARN  A file specified in rcheckconfig.yml does not exist, but a watcher will
                    be created in case the file is created later.
+
+        3003 WARN  A file specified in rcheckconfig.yml does not exist, a watcher will not
+                   be created because the directory does not exist.
+
+        3004 WARN  An error occured while trying to create a watcher for a file.
 
         4901 ERROR There was a problem getting the configuration from rcheckconfig.yml. 
                    The file is possibly improperly formatted, or does not exist in the

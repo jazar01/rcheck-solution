@@ -221,17 +221,22 @@ static int Testfiles()
         }
 
         /// <summary>
-        /// Delete files previously generated
+        /// Delete files previously generated sentinal files
         /// </summary>
         static void Deletefiles()
         {
             foreach (FileRecord File in config.Files)
-            {
-                Sentinal s = new Sentinal(File.Path);
-                if (s.Delete())
-                    Console.WriteLine("Deleted: '" + s.Path + "'");
+            {      
+                if (File.Sentinal)
+                {
+                    Sentinal s = new Sentinal(File.Path);
+                    if (s.Delete())
+                        Console.WriteLine("Deleted: '" + s.Path + "'");
+                    else
+                        Console.WriteLine("Failed:  '" + s.Path + "' " + s.Error);
+                }
                 else
-                    Console.WriteLine("Failed: '" + s.Path + "' " + s.Error);
+                    Console.WriteLine(    "Skipped: '" + File.Path + "' is Not a sentinal file");
 
             }
 
