@@ -54,10 +54,10 @@ Files:
 #     You will need to create this file manually.  When Sentinal is not specified rcheck does not generate it.
 #     This file also as an action that will be executed upon any change.  Always use /C in the parameters
 #     when Action_Command is set to "cmd". 
-  - Path: c:\temp\rchecktest.txt
+  - Path: c:\data\rtest\rchecktest.txt
     Action_Command: cmd
     Action_Parameters: "/C echo File Event - {File} {ChangeType} on {Date} at {Time} on computer: {ComputerName} >>rcheckd2.log"
-    Action_Directory: c:\temp
+    Action_Directory: c:\data\rtest
 
 #   *****   SAMPLE ACTIONS *****
 #   shutdown and restart the system (you should probably shutdown -s -t 0)
