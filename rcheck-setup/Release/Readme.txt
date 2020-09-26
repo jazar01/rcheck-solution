@@ -3,6 +3,13 @@ Rcheck V1.1
 This project is intended to be used to detect and alert when a ransomware attack
 is in progress.  It does this by detecting changes in specified files.
 
+Alerts of monitored file changes can be logged in the system eventlog or a log file 
+of your choosing.  These logs can then be monitored by a log monitor or centralized
+logging system.  
+
+As of V1.1 RCheck can send emails immediately as changes are detected.  See 
+the MailSettings section of the rcheckconfig.yml file.
+
 Requirements:
 Windows 10, or a Windows Server OS.
 
@@ -101,7 +108,11 @@ MailSettings - this section specifies the mail server information for Notificati
           Debug: true to test your mail server configuration.  Check the eventlog or
           logfile for errors.
 
-          MailTo can contain multiple email address separated by commas
+          MailTo can contain multiple email address separated by commas.
+          MailTo can be used to send SMS or MMS messages as well as emails.  See your
+              mobile carriers documentation.  For example: sending email to 
+              <cellNumber>@mms.att.net, for AT&T
+  
 
 NotifyOnMessage - specifies the Events that will generate notifications.  See the EVENTS
     section later in this document for a list of EventID's.

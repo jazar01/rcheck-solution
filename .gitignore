@@ -23,6 +23,8 @@ RCTest/
 [Dd]ebug/
 [Dd]ebugPublic/
 
+# JA - Allowing release only from the setup project. 
+#    the other project releases are under bin which is excluded.
 #[Rr]elease/
 [Rr]eleases/
 x64/

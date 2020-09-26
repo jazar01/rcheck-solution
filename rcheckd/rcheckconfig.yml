@@ -5,6 +5,14 @@
 # This configuration file is also used by the rcheckd service to
 #   determine which files to monitor and what actions, if any, to take.
 
+# Note this is a standard yml file, indentions have meaning.  After making
+#      changes to this file it is higly recommended that you use a yml
+#      validator such as http://yamllint.com to see if your syntax is correct.
+#      In addition, you should check the eventlog, or logfile after 
+#      starting or restarting the rcheckd service to see if your changes
+#      cause any errors.  The RCheck service must be restarted for changes
+#      to become effective.
+
 # Logfile can be set to a file path or "EventLog" 
 
 #Logfile: c:\temp\rcheckdtest.log
@@ -17,9 +25,10 @@ MailSettings:
     MailAuthAccount: rcheck.system@gmail.com
     MailAuthPassword: 
     MailFrom: rcheck.system@gmail.com
-    MailTo: admin@orasi.com
+    MailTo: user@youremail.com
 
 # set which EventID's will trigger an email notification
+#    see the README file for a complete list of EventID's
 NotifyOnMessages:
   - 2001  # a monitored file was changed (detected real-time)
   - 2003  # a monitored file was renamed (detected real-time)
@@ -28,6 +37,7 @@ NotifyOnMessages:
   - 2491  # a sentinal file was likely encrypted (detected real-time)
   - 2492  # a sentinal file was likely encrypted (detected on startup)
 
+# Set Debug to true to get more verbose messages and notification at startup.
 Debug: true
 
 Files:
