@@ -208,9 +208,14 @@ static int Testfiles()
                     else
                     {
                         Console.WriteLine("   Failed: " + File.Path + "  " + sentinal.Error);
-                        if (sentinal.Randomness < 400)
-                                Console.WriteLine("            " + File.Path + " APPEARS TO BE ENCRYPTED  " + sentinal.Randomness);
-
+                        try {  
+                            if (sentinal.Randomness < 400)
+                                 Console.WriteLine("            " + File.Path + " APPEARS TO BE ENCRYPTED  " + sentinal.Randomness);
+                            }
+                        catch (Exception)
+                            { 
+                            Console.WriteLine("            " + File.Path + " is missing or not accessible  "); 
+                            }
                     rc++;
                     }
                 }
